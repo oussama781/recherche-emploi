@@ -1,1 +1,1 @@
-# projet-recherche-emploi-django
+# recherche-emploi
