@@ -1,0 +1,44 @@
+{% load static %}
+{% block body %}
+{% include "user_navigation.html" %}
+
+<section id="hero" class="hero d-flex align-items-center">
+
+   <div class="container mt-5" id="body">
+     <h1>Cofirmer et Postuler: </h1>
+     <div class="row">
+       <div class="col-lg-6 d-flex flex-column justify-content-center">
+         <h2>Job Title: {{job.title}}</h2>
+         <h2>Location: {{job.recruiter.company}}</h2>
+         <h2>Location: {{job.location}}</h2>
+         <h2>Experience(In Years): {{job.experience}}</h2>
+         <h2>Creation Date: {{job.creationdate}}</h2>
+         <h2>Experience: {{job.salary}}</h2>
+         <h2>Description Emploi: {{job.description}}</h2>
+         <h2>Compétences Requises {{job.skills}}</h2>
+         <h2>Date Début: {{job.start_date}}</h2>
+         <h2>date Fin: {{job.end_date}}</h2>
+         <div data-aos="fade-up" data-aos-delay="600">
+
+           <div>
+             <a href="{%url 'applyforjob' job.id%}"  class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+               <input class="btn btn-primary mt-2"type="button" name="" value="Cliquez ici pour postuler">
+               <i class="bi bi-arrow-right"></i>
+             </a>
+             <a href="{% url 'user_latestjobs'%}"  class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+               <input class="btn btn-primary mt-2"type="button" name="" value="Afficher tous les Emplois">
+               <i class="bi bi-arrow-right"></i>
+             </a>
+           </div>
+         </div>
+       </div>
+       <div class="col-lg-6 hero-img mt-5" data-aos="zoom-out" data-aos-delay="200">
+         <img src="{{job.image.url}}" class="img-fluid" alt="">
+       </div>
+     </div>
+   </div>
+
+ </section><!-- End Hero -->
+
+
+{% endblock %}

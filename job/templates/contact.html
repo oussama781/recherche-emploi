@@ -1,0 +1,44 @@
+{% load static %}
+{% block body %}
+{% include "navigation.html" %}
+
+
+<div class="container">
+  <h2 align="center">Contact Us</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="text" name="email" class="form-control" placeholder="Enter your Email" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Subject</label>
+      <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Message</label>
+      <textarea name="message" class="form-control" id="form4Example3" rows="4"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <input type="submit" value="Submit" class="form-control btn btn-primary">
+    </div>
+
+  </form>
+
+</div>
+
+{% if error == "no" %}
+<script>
+  alert("Contact Form Submitted Succuessfully")
+  window.location = ('{% url 'contact' %}')
+{% endif %}
+</script>
+{% if error == "yes" %}
+<script>
+  alert("Something went wrong! try again")
+{% endif %}
+</script>
+
+{% endblock %}

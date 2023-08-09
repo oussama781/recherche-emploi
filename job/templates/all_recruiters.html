@@ -1,0 +1,50 @@
+{% load static %}
+{% block body %}
+{% include "admin_navigation.html" %}
+<div class="container">
+  <h1>Afficher tous les recruteurs</h1>
+  <table id="example" class="table table-striped">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Nom Complet</th>
+        <th>Email </th>
+        <th>Contact</th>
+        <th>genre</th>
+        <th>Company</th>
+        <th>Image</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+        <td>{{i.user.username}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.gender}}</td>
+        <td>{{i.company}}</td>
+        <div class="mb-3">
+          <!--<label class=" form-label">Recruiter Profile Photo</label>-->
+          {% if i.image.url != "" %}
+          <td><img src="{{i.image.url}}" class="rounded mx-auto d-block" style="width: 100px; height: 100px;" alt=""></td>
+          {% else %}
+          <td>No Image</td>
+          {% endif %}
+        </div>
+        <td>{{i.status}}</td>
+        <td>
+          <a class="btn btn-success" href="{% url 'change_status' i.id %}">Changer</a><br><br>
+          <a class="btn btn-danger" onclick="return confirm('Are You Sure?')" href="{% url 'delete_recruiter' i.user.id %}">Supprimer</a>
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+</div>
+{% endblock %}

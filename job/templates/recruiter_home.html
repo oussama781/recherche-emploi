@@ -1,0 +1,94 @@
+{% load static %}
+{% block body %}
+{% include "recruiter_navigation.html" %}
+
+<div class="container">
+  <h1> Profil du Recruteur </h1>
+  <form name="signup" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <div class="mb-3">
+        {% if recruiter.image.url != "" %}
+        <img src="{{recruiter.image.url}}" class="rounded mx-auto d-block" style="width: 100px; height: 100px;" alt=""><br>
+        <input type="file" name="image" class="form-control">
+        {% else %}
+        <input type="file" name="image" class="form-control">
+        {% endif %}
+      </div>
+    <div class="row g-3">
+      <div class="col">
+        <label class="form-label">Prénom</label>
+        <input type="text" name="fname" class="form-control" value="{{recruiter.user.first_name}}" >
+      </div>
+      <div class="col">
+        <label class=" form-label">Nom</label>
+        <input type="text" name="lname" class="form-control" value="{{recruiter.user.last_name}}">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class=" form-label">Company</label>
+      <input type="text" name="company" class="form-control" value="{{recruiter.company}}" readonly>
+    </div>
+    <div class="mb-3">
+      <label class=" form-label">Telephone</label>
+      <input type="text" name="contact" class="form-control"value="{{recruiter.mobile}}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="text" name="email" class="form-control" value="{{recruiter.user.username}}" readonly>
+    </div>
+        <fieldset class="row mb-3">
+          <legend class="col-form-label col-sm-2 pt-0">Genre</legend>
+          {% if recruiter.gender == "Male" %}
+          <div class="col-sm-10">
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" checked>
+              <label class="form-check-label" for="gridRadios1" >
+                Masculin
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female">
+              <label class="form-check-label" for="gridRadios2">
+                Féminin
+              </label>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-sm-10">
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male">
+              <label class="form-check-label" for="gridRadios1">
+                Masculin
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" checked>
+              <label class="form-check-label" for="gridRadios2">
+                Féminin
+              </label>
+            </div>
+          </div>
+          {% endif %}
+        </fieldset>
+        
+        <div class="mb-3">
+          <input type="submit" value="Submit" class="form-control btn btn-primary">
+        </div>
+
+  </form>
+
+
+</div>
+
+{% if error == "no" %}
+<script>
+  alert("Profile updated Succuessfully")
+  window.location = ('{% url 'recruiter_home' %}')
+{% endif %}
+</script>
+{% if error == "yes" %}
+<script>
+  alert("Something went wrong! try again")
+{% endif %}
+</script>
+{% endblock %}

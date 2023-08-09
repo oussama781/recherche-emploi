@@ -1,0 +1,46 @@
+{% load static %}
+{% block body %}
+{% include "admin_navigation.html" %}
+<div class="container">
+  <h1>Afficher tous les Recruteurs-Acceptés</h1>
+  <table id="example" class="table table-striped">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Nom Complet</th>
+        <th>Email </th>
+        <th>Contact</th>
+        <th>Genre</th>
+        <th>Company</th>
+        <th>Image</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+        <td>{{i.user.username}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.gender}}</td>
+        <td>{{i.company}}</td>
+        <td><div class="mb-3">
+          {% if i.image.url != "" %}
+          <img src="{{i.image.url}}" class="rounded mx-auto d-block" style="width: 100px; height: 100px;" alt="">
+          {% comment %} <input type="file" name="image" class="form-control"> {% endcomment %}
+          {% else %}
+          <td>No Image</td>
+          {% endif %}
+        </div></td>
+        <td>{{i.status}}</td>
+        <td>  <a class="btn btn-danger" href="{% url 'change_status' i.id %}">Change</a> </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+</div>
+{% endblock %}

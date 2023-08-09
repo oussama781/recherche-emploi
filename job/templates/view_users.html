@@ -1,0 +1,39 @@
+{% load static %}
+{% block body %}
+{% include "admin_navigation.html" %}
+<div class="container">
+  <h1>Afficher tous les candidats </h1>
+  <table id="example" class="table table-striped">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Nom Complet</th>
+        <th>Email </th>
+        <th>Telephone</th>
+        <th>Genre</th>
+        <th>Photo</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+        <td>{{i.user.username}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.gender}}</td>
+        {% if i.image.url != "" %}
+        <td> <img src="{{i.image.url}}" class="rounded mx-auto d-block" style="width: 100px; height: 100px;" alt=""> </td>
+        {% else %}
+        <td>No Image</td>
+        {% endif %}
+        <td>  <a class="btn btn-danger" onclick="return confirm('Are You Sure?')" href="{% url 'delete_user' i.user.id %}">Delete</a> </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% load static %}
+{% block body %}
+{% include "navigation.html" %}
+<div class="container table-responsive-lg">
+  <h1>Les Offres d'Emploi</h1>
+  <table id="example" class="table table-striped ">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Company Name</th>
+        <th>Titre du poste</th>
+        <th>Location</th>
+        <th>Salaire</th>
+        <th>Description</th>
+        <th>Date Début</th>
+        <th>Date Fin</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.recruiter.company}}</td>
+        <td>{{i.title}}</td>
+        <td>{{i.location}}</td>
+        <td>{{i.salary}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.start_date}}</td>
+        <td>{{i.end_date}}</td>
+        <td> <a class="btn btn-primary "href="{%url 'user_login' %}">Postuler</a> </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% load static %}
+{% block body %}
+{% include "navigation.html" %}
+<div class="container">
+  <h1>Recruteur login</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name='uname' class="form-control" placeholder="Enter your Email">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input name="pwd" type="password" class="form-control" placeholder="Enter password">
+    </div>
+    <div class="mb-3">
+      <input type="submit" class="form-control btn btn-primary" value="Submit">
+    </div>
+
+  </form>
+    <a href="{% url 'recruiter_signup' %}" class="form-control btn btn-primary">Créer Compte</a>
+</div>
+
+{% if error == "no" %}
+<script>
+  alert("Login Succuessfull")
+  window.location = ('{% url 'recruiter_home' %}')
+{% endif %}
+</script>
+{% if error == "yes" %}
+<script>
+  alert("email or password incorrect! try again")
+{% endif %}
+</script>
+{% if error == "not" %}
+<script>
+  alert("Your login status is pending, try later")
+{% endif %}
+</script>
+
+
+{% endblock %}

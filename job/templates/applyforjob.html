@@ -1,0 +1,37 @@
+{% load static %}
+{% block body %}
+{% include "user_navigation.html" %}
+<div class="container">
+  <form class="" method="post" enctype='multipart/form-data'>
+    {%csrf_token%}
+    <div class="form-row">
+      <label class="font-weight-bold">Upload CV</label>
+      <input type="file" name="resume" class="form-control">
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary">
+    </div>
+
+  </form>
+
+</div>
+
+
+{% if error == "close" %}
+<script>
+  alert("Application line are close. Last date over")
+  window.location = ('{% url 'user_latestjobs' %}')
+{% endif %}
+</script>
+{% if error == "notopen" %}
+<script>
+  alert("Applications not yet open, try again later")
+  window.location = ('{% url 'user_latestjobs' %}')
+{% endif %}
+</script>
+{% if error == "done" %}
+<script>
+  alert("Applications submitted successfully")
+  window.location = ('{% url 'user_latestjobs' %}')
+{% endif %}
+</script>
+{% endblock %}

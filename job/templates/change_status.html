@@ -1,0 +1,39 @@
+{% load static %}
+{% block body %}
+{% include "admin_navigation.html" %}
+  <div class="container">
+    <h1 style="color:rgb(255,0,0);">Modifier Recruteur Statut</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        
+        <!--<input type="text" name='uname' class="form-control" value="{{recruiter.user.first_name}} {{recruiter.user.last_name}}" >-->
+      </div>
+      <div class="mb-3">
+        <label class="form-label" ><h3>Company : {{recruiter.user.first_name}} {{recruiter.user.last_name}}</h3></label><br>
+        <label class="form-label">Status</label>
+        <select class="form-control" name="status">
+          <option value="Accept">Accepter</option>
+          <option value="Reject">Refuser</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <input type="submit" class="form-control btn btn-primary" value="Submit">
+      </div>
+      <!--<a href="{% url 'recruiter_signup' %}" class="form-control btn btn-primary">Create an Account</a>-->
+
+    </form>
+  </div>
+
+  {% if error == "no" %}
+  <script>
+    alert("Status changed Succuessfully")
+    window.location = ('{% url 'recruiter_pending' %}')
+  {% endif %}
+  </script>
+  {% if error == "yes" %}
+  <script>
+    alert("Something went wrong! try again")
+  {% endif %}
+  </script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+{% block body %}
+{% include "admin_navigation.html" %}
+<div class="container">
+  <h1>Liste des personnes qui ont contacté via la page de contact</h1>
+  <table id="example" class="table table-striped">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Email</th>
+        <th>Subject </th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in messages %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.subject}}</td>
+        <td>{{i.message}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+</div>
+{% endblock %}

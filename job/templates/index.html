@@ -1,0 +1,31 @@
+{% load static %}
+<title> Recherche D'emploi - PFA </title>
+{% block body %}
+{% include "navigation.html" %}
+
+
+<section id="hero" class="hero d-flex align-items-center">
+
+   <div class="container mt-5" id="body">
+     <div class="row">
+       <div class="col-lg-6 d-flex flex-column justify-content-center">
+         <h1 data-aos="fade-up">Bienvenue dans Job Portal,</h1>
+         <h2 data-aos="fade-up" data-aos-delay="400"></h2>
+         <h2 data-aos="fade-up"> Maintenant, décrochez votre emploi de rêve sur notre portail avec nos recruteurs vérifiés. </h2>
+         <div data-aos="fade-up" data-aos-delay="600">
+           <div>
+             <a href="{% url 'latest_jobs' %}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+               <input class="btn btn-primary mt-2"type="button" name="" value="Get Started">
+               <i class="bi bi-arrow-right"></i>
+             </a>
+           </div>
+         </div>
+       </div>
+       <div class="col-lg-6 hero-img mt-5" data-aos="zoom-out" data-aos-delay="200">
+         <img src="{% static 'images/emploi.jpg' %}" class="img-fluid" alt="">
+       </div>
+     </div>
+   </div>
+
+ </section><!-- End Hero -->
+{% endblock %}
